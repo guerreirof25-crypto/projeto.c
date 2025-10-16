@@ -48,8 +48,16 @@ void lerString(const char *msg, char *dest, size_t tam) {
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+\\editar o veiculo
+void editar() {
+    int id = lerInt("ID do veículo a editar: ");
+    FILE *f = fopen(ARQ, "rb+");
+    if (!f) {
+        puts("Arquivo não encontrado.");
+        return;
+    }
 
-
+ 
 
 
 
