@@ -48,7 +48,7 @@ void lerString(const char *msg, char *dest, size_t tam) {
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-\\editar o veiculo
+\\editar o veiculo Anna
 void editar() {
     int id = lerInt("ID do veículo a editar: ");
     FILE *f = fopen(ARQ, "rb+");
@@ -56,6 +56,36 @@ void editar() {
         puts("Arquivo não encontrado.");
         return;
     }
+ Veiculo v;
+    long pos = 0;
+    int achou = 0;
+
+    while (fread(&v, sizeof(Veiculo), 1, f)) {
+        if (v.id == id && !v.removido) {
+            pos = ftell(f) - sizeof(Veiculo);
+            achou = 1;
+            break;
+        }
+    }
+
+    if (!achou) {
+        puts("Veículo não encontrado.");
+        fclose(f);
+        return;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  //PROXIMO ID
 int proximoID() {
