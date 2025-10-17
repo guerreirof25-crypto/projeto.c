@@ -77,10 +77,10 @@ void mostrarVeiculo(Veiculo v) {
     printf("Tipo: ");
     switch (v.tipo) {
         case CARRO:
-            printf("Carro\nPortas: %d\n", v.info.carro.porta);
+            printf("Carro\nPortas: %d\n", v.info.carro.portas);
             break;
         case MOTO:
-            printf("Moto\nCilindradas: %d\n", v.info.moto.cilindrada);
+            printf("Moto\nCilindradas: %d\n", v.info.moto.cilindradas);
             break;
         case CAMINHAO:
             printf("Caminhão\nCapacidade de carga: %.1f toneladas\n", v.info.caminhao.carga);
