@@ -85,8 +85,6 @@ void editar() {
 
 
 
-
-
  //PROXIMO ID
 int proximoID() {
     FILE *f = fopen(ARQ, "rb");
