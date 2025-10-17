@@ -57,10 +57,37 @@ void editar() {
         return;
     }
 
- 
+ //PROXIMO ID
+int proximoID() {
+    FILE *f = fopen(ARQ, "rb");
+    if (!f) return 1;
+    Veiculo v;
+    int max = 0;
+    while (fread(&v, sizeof(Veiculo), 1, f))
+        if (v.id > max) max = v.id;
+    fclose(f);
+    return max + 1;
+}
 
-
-
+\\\\\\\\\\\\\\\\PRA EXIBIR O VEICULO
+void mostrarVeiculo(Veiculo v) {
+    printf("\n--- Detalhes do veículo ---\n");
+    printf("ID: %d\n", v.id);
+    printf("Nome: %s\n", v.nome);
+    printf("Tipo: ");
+    switch (v.tipo) {
+        case CARRO:
+            printf("Carro\nPortas: %d\n", v.info.carro.porta);
+            break;
+        case MOTO:
+            printf("Moto\nCilindradas: %d\n", v.info.moto.cilindrada);
+            break;
+        case CAMINHAO:
+            printf("Caminhão\nCapacidade de carga: %.1f toneladas\n", v.info.caminhao.carga);
+            break;
+    }
+    printf("---------------------------\n");
+}
 
 
 
