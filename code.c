@@ -73,9 +73,15 @@ void editar() {
         fclose(f);
         return;
     }
-
-
-
+  
+    lerString("Novo nome: ", v.nome, sizeof(v.nome));
+    fseek(f, pos, SEEK_SET);
+    fwrite(&v, sizeof(Veiculo), 1, f);
+    fclose(f);
+    puts("Veículo atualizado com sucesso!");
+}
+///////////////////////////////
+//remover lógoco Anna
 
 
 
