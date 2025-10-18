@@ -81,7 +81,17 @@ void editar() {
     puts("Veículo atualizado com sucesso!");
 }
 ///////////////////////////////
-//remover lógoco Anna
+//remover lógico Anna
+void remover() {
+    int id = lerInt("ID do veículo a remover: ");
+    FILE *f = fopen(ARQ, "rb+");
+    if (!f) {
+        puts("Arquivo não encontrado.");
+        return;
+    }
+    Veiculo v;
+    int achou = 0;
+    while (fread(&v, sizeof(Veiculo), 1, f)) {
 
 
 
@@ -91,7 +101,8 @@ void editar() {
 
 
 
- //PROXIMO ID
+
+//PROXIMO ID
 int proximoID() {
     FILE *f = fopen(ARQ, "rb");
     if (!f) return 1;
