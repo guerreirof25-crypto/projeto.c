@@ -89,9 +89,22 @@ void remover() {
         puts("Arquivo não encontrado.");
         return;
     }
+
     Veiculo v;
     int achou = 0;
     while (fread(&v, sizeof(Veiculo), 1, f)) {
+        if (v.id == id && !v.removido) {
+            v.removido = 1;
+            fseek(f, ftell(f) - sizeof(Veiculo), SEEK_SET);
+            fwrite(&v, sizeof(Veiculo), 1, f);
+            achou = 1;
+            break;
+        }
+    }
+    fclose(f);
+    puts(achou ? "Veículo removido com sucesso!" : "Veículo não encontrado.");
+}
+
 
 
 
