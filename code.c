@@ -135,6 +135,35 @@ void mostrarVeiculo(Veiculo v) {
 }
 
 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Criar veículo (Anne)
+void criar(){
+    Veiculo v= {0};
+    v.id= proximoID();
+    v.removido= 0;
+    v.tipo= lerInt("Tipo (1= Carro, 2= Moto, 3= Caminhão): ");
+    lerString("Nome do veículo: ", v.nome, sizeof(v.nome));
+
+    if (v.tipo== CARRO){
+        V.info.carro.portas= lerInt("Quantidade de portas: ");
+        memset(v.info.carro.manut, 0, sizeof(v.info.carro.manut));
+    } else if (v.tipo== MOTO){
+        v.info.moto.cilindradas= lerINT("Cilindradas: ");
+    } else{
+        v.info.caminhao.carga= lerFloat("Capacidade de carga (toneladas): ");
+    }
+
+    FILE *f= fopen (ARQ, "ab");
+    if (!f){
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+    fwrite(&v, sizeof(Veiculo), 1, f);
+    fclose(f);
+
+    printf("Veículo cadastrado com sucesso! ID: %d\n, v.id);
+}
+
+
 
 
 
