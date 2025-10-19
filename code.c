@@ -195,6 +195,25 @@ void listar() {
     fclose(f);
 }
 
-
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Buscar por ID (Anne)
+void buscar ID(){
+    int id= lerInt("Digite o ID: ");
+    FILE *f = fopen(ARQ, "rb");
+    if (!f) {
+        puts("Arquivo não encontrado.");
+        return;
+    }
+    Veiculo v;
+    int achou = 0;
+    while (fread(&v, sizeof(Veiculo), 1, f)) {
+        if (v.id == id && !v.removido) {
+            mostrarVeiculo(v);
+            achou = 1;
+            break;
+        }
+    }
+    if (!achou) puts("Veículo não encontrado.");
+    fclose(f);
+}
 
 
