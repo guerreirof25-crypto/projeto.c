@@ -104,6 +104,37 @@ void remover() {
     fclose(f);
     puts(achou ? "Veículo removido com sucesso!" : "Veículo não encontrado.");
 }
+//////////////
+// Compactar (remoção física) Anna
+
+void compactar() {
+    FILE *f = fopen(ARQ, "rb");
+    if (!f) {
+        puts("Arquivo não encontrado.");
+        return;
+    }
+
+    FILE *tmp = fopen(ARQ_TEMP, "wb");
+    if (!tmp) {
+        perror("Erro ao criar arquivo temporário");
+        fclose(f);
+        return;
+    }
+
+    Veiculo v;
+    int ativos = 0;
+    while (fread(&v, sizeof(Veiculo), 1, f))
+        if (!v.removido) {
+            fwrite(&v, sizeof(Veiculo), 1, tmp);
+            ativos++;
+        }
+
+    fclose(f);
+    fclose(tmp);
+    remove(ARQ);
+    rename(ARQ_TEMP, ARQ);
+    printf("Compactação concluída. %d veículos permanecem ativos.\n", ativos);
+}
 
 
 
