@@ -198,13 +198,13 @@ void listar() {
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Buscar por ID (Anne)
 void buscar ID(){
     int id= lerInt("Digite o ID: ");
-    FILE *f = fopen(ARQ, "rb");
+    FILE *f= fopen(ARQ, "rb");
     if (!f) {
         puts("Arquivo não encontrado.");
         return;
     }
     Veiculo v;
-    int achou = 0;
+    int achou= 0;
     while (fread(&v, sizeof(Veiculo), 1, f)) {
         if (v.id == id && !v.removido) {
             mostrarVeiculo(v);
@@ -215,5 +215,26 @@ void buscar ID(){
     if (!achou) puts("Veículo não encontrado.");
     fclose(f);
 }
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Buscar por nome (Anne)
+void buscarNome() {
+    char termo[40];
+    lerString("Digite parte do nome: ", termo, sizeof(termo));
+    FILE *f=  fopen(ARQ, "rb");
+    if (!f) {
+        puts("Arquivo não encontrado.");
+        return;
+    }
+    Veiculo v;
+    int achou= 0;
+    while (fread(&v, sizeof(Veiculo), 1, f))
+        if (!v.removido && strstr(v.nome, termo)){
+            mostrarVeiculo(v);
+            achou= 1;
+        }
+        if (!achou) puts("Nenhum veículo com esse nome foi encontrado.");
+        fclose(f);
+}
+            
 
 
