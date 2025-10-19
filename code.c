@@ -177,6 +177,24 @@ void criar(){
 }
 
 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Listar veículo (Anne)
+void listar() {
+    FILE *f = fopen(ARQ, "rb");
+    if (!f) {
+        puts("Nenhum veículo cadastrado ainda.");
+        return;
+    }
+    Veiculo v;
+    int cont = 0;
+    while (fread(&v, sizeof(Veiculo), 1, f))
+        if (!v.removido) {
+            mostrarVeiculo(v);
+            cont++;
+        }
+    if (!cont) puts("Nenhum veículo ativo encontrado.");
+    fclose(f);
+}
+
 
 
 
