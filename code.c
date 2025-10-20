@@ -259,6 +259,33 @@ void buscarNome() {
         if (!achou) puts("Nenhum veículo com esse nome foi encontrado.");
         fclose(f);
 }
+//Anna menu
+int main() {
+    int op;
+    do {
+        printf("\n===== MENU DE VEÍCULOS =====\n"
+               "1 - Cadastrar novo veículo\n"
+               "2 - Listar todos\n"
+               "3 - Buscar por ID\n"
+               "4 - Buscar por nome\n"
+               "5 - Editar\n"
+               "6 - Remover (lógico)\n"
+               "7 - Compactar base\n"
+               "0 - Sair\n");
+        op = lerInt("Escolha uma opção: ");
+        switch (op) {
+            case 1: criar(); break;
+            case 2: listar(); break;
+            case 3: buscarID(); break;
+            case 4: buscarNome(); break;
+            case 5: editar(); break;
+            case 6: remover(); break;
+            case 7: compactar(); break;
+            case 0: puts("Encerrando o programa. Até logo!"); break;
+            default: puts("Opção inválida, tente novamente.");
+        }
+    } while (op != 0);
+}
             
 
 
