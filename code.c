@@ -2,6 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 
+#define ARQ "veiculos.dat"
+#define ARQ_TEMP "temp.dat"
+
 typedef enum{CARRO=1,MOTO,CAMINHAO} Tipo;
 
 typedef struct{
@@ -135,16 +138,6 @@ void compactar() {
     rename(ARQ_TEMP, ARQ);
     printf("Compactação concluída. %d veículos permanecem ativos.\n", ativos);
 }
-
-
-
-
-
-
-
-
-
-
 
 //PROXIMO ID
 int proximoID() {
