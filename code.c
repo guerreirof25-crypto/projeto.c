@@ -183,10 +183,10 @@ void criar(){
     lerString("Nome do veículo: ", v.nome, sizeof(v.nome));
 
     if (v.tipo== CARRO){
-        V.info.carro.portas= lerInt("Quantidade de portas: ");
+        v.info.carro.portas= lerInt("Quantidade de portas: ");
         memset(v.info.carro.manut, 0, sizeof(v.info.carro.manut));
     } else if (v.tipo== MOTO){
-        v.info.moto.cilindradas= lerINT("Cilindradas: ");
+        v.info.moto.cilindradas= lerInt("Cilindradas: ");
     } else{
         v.info.caminhao.carga= lerFloat("Capacidade de carga (toneladas): ");
     }
@@ -199,7 +199,7 @@ void criar(){
     fwrite(&v, sizeof(Veiculo), 1, f);
     fclose(f);
 
-    printf("Veículo cadastrado com sucesso! ID: %d\n, v.id);
+    printf("Veículo cadastrado com sucesso! ID: %d\n", v.id);
 }
 
 //////////////////////////////////////////////////////////////////////////LISTAR VEÍCULO/////////////////////////////////////////////////////////////////////////////
@@ -223,7 +223,7 @@ void listar() {
 
 //////////////////////////////////////////////////////////////////////////BUSCAR POR ID////////////////////////////////////////////////////////////////////////////
 
-void buscar ID(){
+void buscarID(){
     int id= lerInt("Digite o ID: ");
     FILE *f= fopen(ARQ, "rb");
     if (!f) {
@@ -255,13 +255,14 @@ void buscarNome() {
     }
     Veiculo v;
     int achou= 0;
-    while (fread(&v, sizeof(Veiculo), 1, f))
+    while (fread(&v, sizeof(Veiculo), 1, f)){
         if (!v.removido && strstr(v.nome, termo)){
             mostrarVeiculo(v);
             achou= 1;
         }
-        if (!achou) puts("Nenhum veículo com esse nome foi encontrado.");
-        fclose(f);
+    }
+    if (!achou) puts("Nenhum veículo com esse nome foi encontrado.");
+    fclose(f);
 }
 
 ////////////////////////////////////////////////////////////////////////////MENU////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
